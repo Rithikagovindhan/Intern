@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-<<<<<<< HEAD
-//import 'package:Intern_task2/Format.dart';
-import 'package:intl/intl.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-=======
 import 'package:intern_task2/Format.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
->>>>>>> 408cb68 (final commit)
 class EventDetails extends StatefulWidget {
   final int id;
   final String title;
@@ -40,13 +34,6 @@ class EventDetails extends StatefulWidget {
 }
 
 class _EventDetailsState extends State<EventDetails> {
-<<<<<<< HEAD
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
-}
-=======
   bool isExpanded = false;
   String formatDate(String dateTimeStr) {
     final inputFormat = DateFormat("yyyy-MM-dd'T'HH:mm:ss");
@@ -417,4 +404,3 @@ class _EventDetailsState extends State<EventDetails> {
     );
   }
 }
->>>>>>> 408cb68 (final commit)

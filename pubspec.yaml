@@ -63,12 +63,9 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-<<<<<<< HEAD
-=======
 
   assets:
     - lib/images/line.png
->>>>>>> 408cb68 (final commit)
   # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
@@ -84,15 +81,15 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-<<<<<<< HEAD
-=======
+
+
 
   fonts:
     - family: Inter
       fonts:
         - asset: lib/fonts/Inter-VariableFont_slnt,wght.ttf
 
->>>>>>> 408cb68 (final commit)
+
   # fonts:
   #   - family: Schyler
   #     fonts:

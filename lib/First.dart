@@ -1,34 +1,14 @@
-<<<<<<< HEAD
+//import 'package:easymusic/search.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:http/http.dart' as http;
 import 'package:intern_task2/Format.dart';
+import 'dart:convert';
+//import 'package:easymusic/Event.dart';
 import 'package:intern_task2/Info.dart';
 import 'package:intl/intl.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-
-class First extends StatefulWidget {
-  const First({Key? key}) : super(key: key);
-  @override
-  State<First> createState() => _FirstState();
-}
-
-class _FirstState extends State<First> {
-  late Future<List<dynamic>> eventData;
-  List<Event> events = [];
-=======
-//import 'package:intern_task2/search.dart';
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-import 'package:intern_task2/Format.dart';
-import 'package:intern_task2/search.dart';
-import 'package:intl/intl.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'Info.dart';
-// import 'search.dart';
-// import 'package:intern_task2/search.dart';
-
+//import 'Details.dart';
+import 'search.dart';
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -40,36 +20,27 @@ class _HomeState extends State<Home> {
   late Future<List<dynamic>> eventData;
   List<Event> events = [];
 
->>>>>>> 408cb68 (final commit)
   @override
   void initState() {
     super.initState();
     fetchEventData();
   }
-<<<<<<< HEAD
-=======
 
->>>>>>> 408cb68 (final commit)
   String formatDateTime(String dateTime) {
     final parsedDateTime = DateTime.parse(dateTime);
     final dayName = DateFormat.E().format(parsedDateTime); // Full day name (e.g., Wednesday)
     final abbreviatedDay = dayName.substring(0, 3); // Shortened to three characters (e.g., Wed)
     final formattedDate = DateFormat.MMMd().format(parsedDateTime); // Date (e.g., Apr 28)
     final time = DateFormat.jm().format(parsedDateTime); // Time (e.g., 5:30 PM)
-<<<<<<< HEAD
-=======
 
->>>>>>> 408cb68 (final commit)
     return '$abbreviatedDay, $formattedDate · $time';
   }
+
+
+
+
   Future<void> fetchEventData() async {
     final apiUrl = 'https://sde-007.api.assignment.theinternetfolks.works/v1/event';
-<<<<<<< HEAD
-    try {
-      final response = await http.get(Uri.parse(apiUrl));
-      if (response.statusCode == 200) {
-        final jsonData = json.decode(response.body);
-=======
 
     try {
       final response = await http.get(Uri.parse(apiUrl));
@@ -77,7 +48,6 @@ class _HomeState extends State<Home> {
       if (response.statusCode == 200) {
         final jsonData = json.decode(response.body);
 
->>>>>>> 408cb68 (final commit)
         final List<Event> eventList = (jsonData['content']['data'] as List).map((eventData) {
           return Event(
             id: eventData['id'],
@@ -92,21 +62,13 @@ class _HomeState extends State<Home> {
             venueCountry: eventData['venue_country'],
           );
         }).toList();
-<<<<<<< HEAD
+
         setState(() {
           events = eventList; // Update the events list
         });
+
         print('Fetched ${events
             .length} events'); // Add this line to check the number of fetched events
-=======
-
-        setState(() {
-          events = eventList;
-        });
-
-        print('Fetched ${events
-            .length} events');
->>>>>>> 408cb68 (final commit)
       } else {
         throw Exception(
             'API Request failed with status code: ${response.statusCode}');
@@ -115,73 +77,6 @@ class _HomeState extends State<Home> {
       throw Exception('API Request failed with error: $error');
     }
   }
-<<<<<<< HEAD
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-      backgroundColor: Colors.white,
-          body: Column(
-            children: [
-              Container(
-                child: Padding(
-                  padding: EdgeInsets.only(top:30.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(padding: const EdgeInsets.only(left:10.0),
-                        child: Container(
-                          child: Text(
-                            'Events',
-                                style:TextStyle(
-                              fontSize: 29,
-                                  height: 1,
-                          )
-                          ),
-                        ),
-                      ),
-                      Padding(
-                          padding: const EdgeInsets.only(right: 18.0),
-                      child: Row(
-                        children: [
-                          Icon(Icons.search,
-                          size: 30,
-                          ),
-                          SizedBox(width: 15,),
-                          Icon(Icons.more_vert,size: 30,),
-                        ],
-                      ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-              Expanded(child: events.isEmpty?
-                  Center(
-                    child: Text('Loading',style: TextStyle(fontSize: 20),),
-                  )
-                  :ListView.builder(
-                itemCount: events.length,
-                itemBuilder: (BuildContext context, int index)
-                {
-                  final event=events[index];
-                  return GestureDetector(
-                    onTap:()
-                        {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context)=>EventDetails(
-                              id: events[index].id,
-                              title: events[index].title,
-                              description: events[index].description,
-                              bannerImage: events[index].bannerImage,
-                              dateTime: events[index].dateTime,
-                              organiserName: events[index].organiserName,
-                              organiserIcon: events[index].organiserIcon,
-                              venueName: events[index].venueName,
-                              venueCity: events[index].venueCity,
-                              venueCountry: events[index].venueCountry)));
-                        },
-=======
 
 
   @override
@@ -218,7 +113,7 @@ class _HomeState extends State<Home> {
                           IconButton(onPressed:(){
                             Navigator.of(context).push(
                               MaterialPageRoute(
-                                builder: (context) => Search(),
+                                builder: (context) => Search(), // Pass the events list
                               ),
                             );
                           }, icon: Icon(
@@ -266,7 +161,6 @@ class _HomeState extends State<Home> {
                           )));
 
                     },
->>>>>>> 408cb68 (final commit)
                     child: Padding(
                       padding: const EdgeInsets.only(
                           top: 10.0, left: 9.0, right: 9.0, bottom: 9.0),
@@ -314,13 +208,9 @@ class _HomeState extends State<Home> {
                                       formatDateTime(event.dateTime),
                                       style: TextStyle(
                                         color: Colors.blue,
-<<<<<<< HEAD
-                                        fontSize: 15,
-=======
                                         fontSize: 13,
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w400,
->>>>>>> 408cb68 (final commit)
                                       ),
                                     )
                                   ],
@@ -331,25 +221,17 @@ class _HomeState extends State<Home> {
                                 Row(
                                   children: [
                                     SizedBox(
-<<<<<<< HEAD
-                                      width:260.0,
-=======
                                       width:200.0,
->>>>>>> 408cb68 (final commit)
                                       child: Text(event.organiserName,
                                         maxLines:2,
                                         overflow: TextOverflow.ellipsis,
                                         softWrap: false,
                                         style: TextStyle(
                                           color: Colors.black,
-<<<<<<< HEAD
-                                          fontSize: 17,
-=======
                                           fontSize: 15,
                                           fontFamily: 'Inter',
                                           fontWeight: FontWeight.w500,
 
->>>>>>> 408cb68 (final commit)
                                         ),),
                                     )
                                   ],
@@ -360,33 +242,14 @@ class _HomeState extends State<Home> {
 
                                 Row(
                                   children: [
-<<<<<<< HEAD
-                                    Icon(Icons.location_on_rounded,
-                                      color: Colors.grey,),
-                                    SizedBox(width: 3,),
-                                    SizedBox(
-                                      width:260.0,
-                                      child: Text(event.venueName+' . '+event.venueCity+','+event.venueCountry,
-                                        maxLines:1,
-                                        style: TextStyle(
-                                          color: Colors.grey,
-                                          fontSize: 13,
-                                        ),
-                                        overflow: TextOverflow.ellipsis,
-                                        softWrap: false,
-                                      ),
-                                    )
-                                  ],
-                                ),
-=======
                                     Icon(Icons.location_on_rounded, color: Colors.grey),
                                     SizedBox(width: 3),
                                     SizedBox(
                                       width: 200.0,
                                       child: Text(
                                         event.venueName + ' . ' + event.venueCity + ',' + event.venueCountry,
-                                        maxLines: 3,
-                                        overflow: TextOverflow.ellipsis,
+                                        maxLines: 3, // Allow the text to occupy up to two lines
+                                        overflow: TextOverflow.ellipsis, // Show ellipsis when overflowing
                                         style: TextStyle(
                                           color: Colors.grey,
                                           fontSize: 13,
@@ -398,23 +261,12 @@ class _HomeState extends State<Home> {
                                   ],
                                 ),
 
->>>>>>> 408cb68 (final commit)
                               ],
                             ),
                           ],
                         ),
                       ),
                     ),
-<<<<<<< HEAD
-
-                  );
-                },
-              )
-              ),
-            ],
-          ),
-    ));
-=======
                   );
                 },
               ),
@@ -423,6 +275,5 @@ class _HomeState extends State<Home> {
         ),
       ),
     );
->>>>>>> 408cb68 (final commit)
   }
 }

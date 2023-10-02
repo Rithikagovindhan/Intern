@@ -9,11 +9,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-<<<<<<< HEAD
       home:const First(),
-=======
-      home:const Home(),
->>>>>>> 408cb68 (final commit)
     );
   }
 }
